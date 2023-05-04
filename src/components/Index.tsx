@@ -11,10 +11,6 @@ export interface ShareObject {
   created_at: string;
 }
 
-interface IndexProps {
-  url: string;
-}
-
 const Index = () => {
   const { url } = useParams<{ url: any }>();
   const [shareObject, setShareObject] = useState<ShareObject>({
