@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../../lib/api";
+import { useParams } from "react-router-dom";
 // import RecoverPassword from "./RecoverPassword";
 // import TodoItem from "./TodoItem";
 
@@ -10,7 +11,12 @@ export interface ShareObject {
   created_at: string;
 }
 
-const Index = ({ url }: { url: string }) => {
+interface IndexProps {
+  url: string;
+}
+
+const Index = () => {
+  const { url } = useParams<{ url: any }>();
   const [shareObject, setShareObject] = useState<ShareObject>({
     code: "",
     share_item: "",
@@ -40,11 +46,10 @@ const Index = ({ url }: { url: string }) => {
       const userInfo = await (await fetch('https://ipapi.co/json/')).json()
       const response = await supabase
         .from("share_table")
-        .insert([{ code: url,creator_info:userInfo}]);
-        console.log(response)
+        .insert([{ code: url,creator_info:userInfo}]).select("id");
 
       if (response.status==201) {
-        setShareObject((p)=>({...p,code:url}));
+        setShareObject((p)=>({...p,code:url,id:response?.data?.[0]?.id}));
       } 
       else if (response.error) {
         console.log("create error", response.error);

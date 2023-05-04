@@ -1,20 +1,17 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import Index from './components/Index'
 import Home from './components/Home'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
-  const [url, setUrl] = useState("")
-
-  useEffect(()=>{
-    let url = window.location.pathname.split("/")[1];
-    setUrl(url);
-  },[])
   return (
-    <>
-      {url==""?<Home></Home>:<Index url = {url}></Index> }
-      </>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:url" element={<Index />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
