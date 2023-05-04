@@ -1,14 +1,19 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
+import Index from './components/Index'
 import Home from './components/Home'
 
 function App() {
+  const [url, setUrl] = useState("")
 
+  useEffect(()=>{
+    let url = window.location.pathname.split("/")[1];
+    setUrl(url);
+  },[])
   return (
     <>
-      <Home></Home>    </>
+      {url==""?<Home></Home>:<Index url = {url}></Index> }
+      </>
   )
 }
 
