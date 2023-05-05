@@ -13,7 +13,7 @@ export interface ShareObject {
   lang:string;
 }
 
-const supportedLanguages = ["java","cpp","javascript","python","json","html","markup"]
+const supportedLanguages = ["java","cpp","javascript","python","json","html","markdown"]
 
 // https://github.com/wooorm/refractor#syntaxes
 

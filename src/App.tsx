@@ -8,8 +8,6 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/test2" element={<Home />} />
-        <Route path="/test" element={<Index />} />
         <Route path="/:url" element={<Index />} />
       </Routes>
     </Router>
